@@ -4,7 +4,7 @@
 # Description: Script that finds and downloads the latest version of an FX Server (from the fivem runtime website).
 # Author: http://github.com/tomgrobbe
 # Date: 06-Oct-2017
-# Version: 1.1
+# Version: 1.2
 # Usage: ./fx-downloader.sh [previous version number (default: 0 for latest build)]
 # Example: We want to download the latest version, latest build is build #400
 # ./fx-downloader.sh 0
@@ -28,7 +28,7 @@ version=$(($1 + 3))
 # Now we end up with the name of the latest build and we use that to make the download
 # link for the latest build.
 # We save the output of the executed command in a new variable called latestBuild.
-latestBuild=$(tail -n $version index.html | head -n 1 | cut -c 10-54)
+latestBuild=$(tail -n $version index.html | head -n 1 | cut -d\" -f2)
 
 # We remove index.html because we don't need that anymore.
 rm index.html
@@ -42,3 +42,4 @@ echo "#####################################################################"
 echo "  Downloaded version: $latestBuild"
 
 echo "#####################################################################"
+
